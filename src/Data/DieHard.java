@@ -1,4 +1,4 @@
-package Role;
+package Data;
 
 public class DieHard {
 }
