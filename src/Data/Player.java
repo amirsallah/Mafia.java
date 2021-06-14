@@ -15,7 +15,7 @@ public class Player {
     private Integer votes;
     private String voteItself;
 
-    public Player(String username,Socket socket) throws IOException {
+    public Player(String username, Socket socket) throws IOException {
         this.socket = socket;
         this.dataInputStream = new DataInputStream(socket.getInputStream());
         this.dataOutputStream = new DataOutputStream(socket.getOutputStream());
@@ -72,5 +72,19 @@ public class Player {
 
     public String getUsername() {
         return username;
+    }
+
+    public Boolean yesOrNo() throws IOException {
+        dataOutputStream.writeUTF("yes or no?\n");
+        while (true) {
+            String str = dataInputStream.readUTF();
+            if (str.equals("yes") || str.equals("Yes"))
+                return true;
+            if (str.equals("no") || str.equals("No"))
+                return false;
+            dataOutputStream.writeUTF("Input is incorrect!:(\n" +
+                    "please try again\n" +
+                    "yes or no?");
+        }
     }
 }

@@ -41,6 +41,8 @@ public class ShareData {
 
     public static Player giveGoal(Player player) throws IOException {return player.selectPlayer();}
 
+    public static Boolean yesOrNo(Player player) throws IOException { return player.yesOrNo();}
+
     public static void removePlayer(){}
 
 }
