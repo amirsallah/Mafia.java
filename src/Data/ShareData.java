@@ -11,7 +11,7 @@ public class ShareData {
         players.add(player);
     }
 
-    public static void AddRole(Role role){
+    public static void AddRole(Role role) {
         roles.add(role);
     }
 
@@ -31,22 +31,33 @@ public class ShareData {
         ShareData.roles = roles;
     }
 
-    public static Player givePlayerByName(String name){
-        for (Player p: players) {
+    public static Player givePlayerByName(String name) {
+        for (Player p : players) {
             if (p.getUsername().equals(name))
                 return p;
         }
         return null;
     }
 
-    public static Player giveGoal(Player player) throws IOException {return player.selectPlayer();}
+    public static Player giveGoal(Player player) throws IOException {
+        return player.selectPlayer();
+    }
 
-    public static Boolean yesOrNo(Player player) throws IOException { return player.yesOrNo();}
+    public static Boolean yesOrNo(Player player) throws IOException {
+        return player.yesOrNo();
+    }
 
-    public static void removePlayer(){}
+    public static void removePlayer() {
+    }
 
-    public static void sendToPlayer(Player player, StringBuilder str) throws IOException {
+    public static void sendToPlayer(Player player, String str) throws IOException {
         player.send(str);
     }
 
+    public static void allSendMassage(String str) throws IOException {
+        for (Player p : players) {
+            p.send(str);
+        }
+
+    }
 }

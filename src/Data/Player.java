@@ -88,8 +88,8 @@ public class Player {
         }
     }
 
-    public void send(StringBuilder str) throws IOException {
-        dataOutputStream.writeUTF(str.toString());
+    public void send(String str) throws IOException {
+        dataOutputStream.writeUTF(str);
     }
 
 }

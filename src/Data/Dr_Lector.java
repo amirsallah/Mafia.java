@@ -2,10 +2,10 @@ package Data;
 
 import java.io.IOException;
 
-public class Dr_Lecter extends Mafia implements Move {
+public class Dr_Lector extends Mafia implements Move {
     public Player GiveThePlayerRole(){
         for (Player p: ShareData.getPlayers()) {
-            if (p.getRole() instanceof Dr_Lecter)
+            if (p.getRole() instanceof Dr_Lector)
                 return p;
         }
         return null;

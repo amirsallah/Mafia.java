@@ -71,7 +71,7 @@ public class GameStarter {
     public static void productionOfRoles() {
         int numberMafia = ShareData.getPlayers().size() / 3;
         ShareData.AddRole(new GodFather());
-        ShareData.AddRole(new Dr_Lecter());
+        ShareData.AddRole(new Dr_Lector());
         for (int i = 0; i != (numberMafia - 2); ++i)
             ShareData.AddRole(new SimpleMafia());
         int numberCitizen = ShareData.getPlayers().size() - numberMafia;

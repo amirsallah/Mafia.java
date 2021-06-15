@@ -7,7 +7,7 @@ public class GameLoop {
         gameManager = new GameManager();
     }
 
-    public void dayAndNight(){
+    public void dayAndNight() throws IOException {
         while (true){
             gameFinish();
             day();
@@ -17,11 +17,11 @@ public class GameLoop {
         }
     }
 
-    public void day(){
+    public void day() throws IOException {
         gameManager.dayHandler();
     }
 
-    public void night(){
+    public void night() throws IOException {
         gameManager.nightHandler();
     }
 
