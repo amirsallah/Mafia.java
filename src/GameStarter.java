@@ -12,7 +12,7 @@ import java.util.concurrent.Executors;
 
 public class GameStarter {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, InterruptedException {
         ServerSocket serverSocket = new ServerSocket(2021);
         start(serverSocket);
         productionOfRoles();

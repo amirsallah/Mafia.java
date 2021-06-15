@@ -7,17 +7,17 @@ public class GameLoop {
         gameManager = new GameManager();
     }
 
-    public void dayAndNight() throws IOException {
+    public void dayAndNight() throws IOException, InterruptedException {
         while (true){
+            night();
             gameFinish();
             day();
             vote();
             gameFinish();
-            night();
         }
     }
 
-    public void day() throws IOException {
+    public void day() throws IOException, InterruptedException {
         gameManager.dayHandler();
     }
 
@@ -25,7 +25,7 @@ public class GameLoop {
         gameManager.nightHandler();
     }
 
-    public void vote(){
+    public void vote() throws InterruptedException, IOException {
         gameManager.voteHandler();
     }
 
@@ -33,8 +33,8 @@ public class GameLoop {
         gameManager.introductionNightHandler();
     }
 
-    public void gameFinish(){
-
+    public boolean gameFinish() throws IOException {
+        return gameManager.gameFinish();
     }
 
 }

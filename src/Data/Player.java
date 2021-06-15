@@ -13,13 +13,14 @@ public class Player {
     private Role role;
     private Boolean live;
     private Integer votes;
-    private String voteItself;
+    private Boolean silence;
 
     public Player(String username, Socket socket) throws IOException {
         this.socket = socket;
         this.dataInputStream = new DataInputStream(socket.getInputStream());
         this.dataOutputStream = new DataOutputStream(socket.getOutputStream());
         this.username = username;
+        this.silence = false;
     }
 
     public Boolean getLive() {
@@ -34,16 +35,16 @@ public class Player {
         return votes;
     }
 
-    public void setVotes(Integer votes) {
-        this.votes = votes;
+    public void setVotes() {
+        ++votes;
     }
 
-    public String getVoteItself() {
-        return voteItself;
-    }
-
-    public void setVoteItself(String voteItself) {
-        this.voteItself = voteItself;
+    public String setVoteItself() throws IOException {
+        dataOutputStream.writeUTF("Vote for one of them to exit by writing the player name:\n" +
+                ShareData.getPlayers().toString() + "\n");
+        String name = dataInputStream.readUTF();
+        ShareData.allSendMassage(this.getUsername() + "Voted to->" + name);
+        return name;
     }
 
     public Role getRole() {
@@ -91,5 +92,18 @@ public class Player {
     public void send(String str) throws IOException {
         dataOutputStream.writeUTF(str);
     }
+
+    public Boolean getSilence() {
+        return silence;
+    }
+
+    public void setSilence(Boolean silence) {
+        this.silence = silence;
+    }
+
+    public String read () throws IOException {
+        return dataInputStream.readUTF();
+    }
+
 
 }

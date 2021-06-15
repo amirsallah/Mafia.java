@@ -6,6 +6,7 @@ import java.util.ArrayList;
 public class ShareData {
     private static ArrayList<Player> players;
     private static ArrayList<Role> roles;
+    private static ArrayList<Player> deadPlayer;
 
     public static void AddPlayer(Player player) {
         players.add(player);
@@ -47,7 +48,12 @@ public class ShareData {
         return player.yesOrNo();
     }
 
-    public static void removePlayer() {
+    public static ArrayList<Player> getDeadPlayer() {
+        return deadPlayer;
+    }
+
+    public static void removePlayer(Player player) {
+        players.remove(player);
     }
 
     public static void sendToPlayer(Player player, String str) throws IOException {
@@ -58,6 +64,41 @@ public class ShareData {
         for (Player p : players) {
             p.send(str);
         }
+        for (Player p: deadPlayer) {
+            p.send(str);
+        }
+    }
 
+    public static void talkDown(Player player){
+        player.setSilence(true);
+    }
+
+    public static void talkUp(Player player){
+        player.setSilence(false);
+    }
+
+    public static void addDeadPlayer(Player player){
+        deadPlayer.add(player);
+    }
+
+    public static void setDeadPlayer(ArrayList<Player> deadPlayer) {
+        ShareData.deadPlayer = deadPlayer;
+    }
+
+    public static String readMassage(Player player) throws IOException {
+        return player.read();
+    }
+
+    public static Player vote(Player player) throws IOException {
+        String str = player.setVoteItself();
+        for (Player p: players) {
+            if (str.equals(p.getUsername()))
+                return p;
+        }
+         return null;
+    }
+
+    public static void setItVotes(Player player){
+        player.setVotes();
     }
 }
