@@ -87,4 +87,9 @@ public class Player {
                     "yes or no?");
         }
     }
+
+    public void send(StringBuilder str) throws IOException {
+        dataOutputStream.writeUTF(str.toString());
+    }
+
 }

@@ -17,7 +17,8 @@ public class GameStarter {
         start(serverSocket);
         productionOfRoles();
         distributionOfRoles();
-
+        GameLoop gameLoop = new GameLoop();
+        gameLoop.dayAndNight();
     }
 
     public static void start(ServerSocket serverSocket) {
@@ -94,6 +95,7 @@ public class GameStarter {
             p.setRole(role);
             roles.remove(num);
         }
+        ShareData.setPlayers(players);
     }
 
     public static boolean nameExist(String name) {

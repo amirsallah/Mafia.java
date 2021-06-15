@@ -45,4 +45,8 @@ public class ShareData {
 
     public static void removePlayer(){}
 
+    public static void sendToPlayer(Player player, StringBuilder str) throws IOException {
+        player.send(str);
+    }
+
 }
